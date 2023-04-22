@@ -34,13 +34,31 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-
+                db.Open();
                 string query = Client.INSERT.Replace("@IdAdress", new AddressRepository().InsertAddress(client.Address).ToString());
 
                 db.Execute(query, client);
                 status = true;
             }
             return status;
+        }
+        
+        public int InsertClient(Client client)
+        {
+            string strInsert = "insert into Client (Name, Telephone, IdAdress, Dt_Register) values (@Name, @Telephone, @IdAdress, @Dt_Register); " +
+                "select cast(scope_identity() as int)";
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+
+                string query = strInsert.Replace("@IdAdress", new AddressRepository().InsertAddress(client.Address).ToString());
+
+
+                return (int)db.ExecuteScalar(query, client);
+
+            }
+
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -34,7 +35,16 @@ namespace Repositories
             using (var db = new SqlConnection(Conn))
             {
                 db.Open();
-                db.Execute(Package.INSERT, package);
+                SqlCommand commandInsert = new SqlCommand(Ticket.INSERT, db);
+
+                commandInsert.Parameters.Add(new SqlParameter("@IdHotel", new HotelRepository().InsertHotel(package.Hotel).ToString()));
+                commandInsert.Parameters.Add(new SqlParameter("@IdTicket", new TicketRepository().InsertTicket(package.Ticket).ToString()));
+                commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", package.Dt_Register));
+                commandInsert.Parameters.Add(new SqlParameter("@Price", package.Price));
+                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(package.Client).ToString()));
+
+                commandInsert.ExecuteNonQuery();
+                
                 status = true;
             }
             return status;
