@@ -52,9 +52,9 @@ internal class Program
 
         var client = new Client()
         {
-            Name = "jose",
-            Telephone = "997244455",
-            Address = address2,
+            Name = "Elias",
+            Telephone = "190",
+            Address = address,
             Dt_Register = DateTime.Now,
 
         };
@@ -66,8 +66,8 @@ internal class Program
 
 
 
-
-        string informationClient = (new ClientController().Insert(client) ? "cliente inserido" : " erro ao inserir cliente");
+        //INSERINDO CLIENTE
+       string informationClient = (new ClientController().Insert(client) ? "cliente inserido" : " erro ao inserir cliente");
 
 
         //inserindo endereco

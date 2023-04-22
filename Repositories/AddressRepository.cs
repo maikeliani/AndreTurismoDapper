@@ -53,7 +53,6 @@ namespace Repositories
 
                 string query = strInsert.Replace("@IdCity", new CityRepository().InsertCity(address.City).ToString());
 
-                //string query = Address.INSERT.Replace("@IdCity", new CityRepository().InsertCity(address.City).ToString());
 
                 return (int)db.ExecuteScalar(query, address);
                 
