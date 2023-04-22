@@ -24,5 +24,10 @@ namespace Controllers
         {
             return cityService.GetAll();
         }
+
+        public bool Delete(int id)
+        {
+            return cityService.Delete(id);
+        }
     }
 }

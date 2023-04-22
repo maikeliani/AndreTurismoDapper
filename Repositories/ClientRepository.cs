@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -33,8 +34,10 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(Client.INSERT, client);
+
+                string query = Client.INSERT.Replace("@IdAdress", new AddressRepository().InsertAddress(client.Address).ToString());
+
+                db.Execute(query, client);
                 status = true;
             }
             return status;

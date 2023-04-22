@@ -22,9 +22,16 @@ namespace Services
             return cityRepository.Insert(city);
         }
 
+        public bool Delete(int id)
+        {
+            return cityRepository.Delete(id);
+        }
+
         public List<City> GetAll()
         {
             return cityRepository.GetAll();
         }
+
+       
     }
 }

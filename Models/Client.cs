@@ -9,7 +9,7 @@ namespace Models
     public class Client
     {
         public readonly static string INSERT = " insert into Client (Name, Telephone, IdAdress, Dt_Register) values ( @Name, @Telephone, @IdAdress, @Dt_Register )";
-        public readonly static string GETALL = " select Name, Telephone, IdAdress, Dt_Register from Client";
+        public readonly static string GETALL = " select Id, Name, Telephone, IdAdress, Dt_Register from Client";
         public int Id { get; set; }
         public string Name { get; set; }
         public string Telephone { get; set; }
@@ -23,5 +23,12 @@ namespace Models
             return $"\nId: {Id}\nName: {Name}\nTelefone: {Telephone}" +
                 $"\nEndereço: {Address}\nData de Registro: {Dt_Register}";
         }
+        /*
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+
+        }
+        */
     }
 }

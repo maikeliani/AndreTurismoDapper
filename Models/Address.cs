@@ -10,7 +10,7 @@ namespace Models
     {
         public readonly static string INSERT = " insert into Adress (Street, Number, NeighborHood, ZipCode, " +
             "Complement, IdCity, Dt_Register) values ( @Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity, @Dt_Register)";
-        public readonly static string GETALL = " select Street, Number, NeighborHood, ZipCode, Complement," +
+        public readonly static string GETALL = " select Id, Street, Number, NeighborHood, ZipCode, Complement," +
             " IdCity, Dt_Register from Adress";
 
         public int Id { get; set; }

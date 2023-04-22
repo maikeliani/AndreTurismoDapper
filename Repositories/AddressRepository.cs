@@ -34,10 +34,32 @@ namespace Repositories
             using (var db = new SqlConnection(Conn))
             {
                 db.Open();
-                db.Execute(Address.INSERT, address);
+                string query = Address.INSERT.Replace("@IdCity",new CityRepository().InsertCity(address.City).ToString());
+                db.Execute(query,address);
                 status = true;
             }
             return status;
+        }
+
+        public int InsertAddress(Address address)
+        {
+            string strInsert = "insert into Adress " +
+                "(Street, Number, NeighborHood, ZipCode, Complement, IdCity, Dt_Register)" +
+                " values (@Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity , @Dt_Register ); " +
+                "select cast(scope_identity() as int)";
+            using (var db = new SqlConnection(Conn))
+            {   
+                db.Open();
+
+                string query = strInsert.Replace("@IdCity", new CityRepository().InsertCity(address.City).ToString());
+
+                //string query = Address.INSERT.Replace("@IdCity", new CityRepository().InsertCity(address.City).ToString());
+
+                return (int)db.ExecuteScalar(query, address);
+                
+            }
+            
+
         }
     }
 }

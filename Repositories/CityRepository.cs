@@ -34,6 +34,22 @@ namespace Repositories
             return status;
         }
 
+        public int InsertCity(City city)
+        {
+            string strInsert = "insert into City (Description, Dt_Register) values (@Description, @Dt_Register ); " +
+                "select cast(scope_identity() as int)";
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();                
+                return (int)db.ExecuteScalar(strInsert, city);
+
+            }
+
+            
+
+        }
+
+
         public List<City> GetAll()
         {
             using (var db = new SqlConnection(Conn))
@@ -42,5 +58,18 @@ namespace Repositories
                 return (List<City>)cities;
             }
         }
+
+        public bool Delete(int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                db.Execute(City.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
     }
 }

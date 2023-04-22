@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(City city);
 
         List<City> GetAll();
+        bool Delete(int id);
     }
 }

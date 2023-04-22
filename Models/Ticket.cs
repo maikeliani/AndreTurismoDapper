@@ -10,7 +10,7 @@ namespace Models
     {
         public readonly static string INSERT = " insert into Ticket (SourceAdress, DestinationAdress, IdClient, Dt_Register, Price) " +
             "values ( @SourceAdress, @DestinationAdress, @IdClient, @Dt_Register, @Price )";
-        public readonly static string GETALL = " select SourceAdress, DestinationAdress, IdClient, Dt_Register, Price from Ticket";
+        public readonly static string GETALL = " select Id, SourceAdress, DestinationAdress, IdClient, Dt_Register, Price from Ticket";
 
         public int Id { get; set; }
 
@@ -23,5 +23,11 @@ namespace Models
         public DateTime Dt_Register { get; set; }
 
         public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+
+        }
     }
 }
