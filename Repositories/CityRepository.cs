@@ -42,11 +42,7 @@ namespace Repositories
             {
                 db.Open();                
                 return (int)db.ExecuteScalar(strInsert, city);
-
-            }
-
-            
-
+            }           
         }
 
 

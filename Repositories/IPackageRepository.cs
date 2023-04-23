@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(Package package);
 
         List<Package> GetAll();
+        bool Delete(int id);
     }
 }

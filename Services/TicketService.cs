@@ -26,5 +26,10 @@ namespace Services
         {
             return ticketRepository.GetAll();
         }
+
+        public bool Delete(int id)
+        {
+            return ticketRepository.Delete(id);
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Models
             "Complement, IdCity, Dt_Register) values ( @Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity, @Dt_Register)";
         public readonly static string GETALL = " select Id, Street, Number, NeighborHood, ZipCode, Complement," +
             " IdCity, Dt_Register from Adress";
+        public readonly static string DELETE = " delete from Adress where Id = ";
 
         public int Id { get; set; }
         public string Street { get; set; }

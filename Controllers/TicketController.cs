@@ -24,5 +24,10 @@ namespace Controllers
         {
             return ticketService.GetAll();
         }
+
+        public bool Delete(int id)
+        { 
+            return ticketService.Delete(id);
+        }
     }
 }

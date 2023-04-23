@@ -25,5 +25,9 @@ namespace Controllers
         {
             return addressService.GetAll();
         }
+        public bool Delete(int id)
+        {
+            return addressService.Delete(id);
+        }
     }
 }

@@ -53,6 +53,18 @@ namespace Repositories
         
         }
 
+        public bool Delete(int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                db.Execute(Hotel.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
         public List<Hotel> GetAll()
         {
             using (var db = new SqlConnection(Conn))

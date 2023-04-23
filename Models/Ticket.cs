@@ -11,6 +11,7 @@ namespace Models
         public readonly static string INSERT = "insert into Ticket ( SourceAdress, DestinationAdress, IdClient, Dt_Register, Price) " +
             "values (@SourceAdress, @DestinationAdress, @IdClient, @Dt_Register, @Price )";
         public readonly static string GETALL = " select Id, SourceAdress, DestinationAdress, IdClient, Dt_Register, Price from Ticket";
+        public readonly static string DELETE = " delete from Ticket where Id = ";
 
         public int Id { get; set; }
 

@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(Ticket ticket);
 
         List<Ticket> GetAll();
+        bool Delete(int id);
     }
 }

@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(Client client);
 
         List<Client> GetAll();
+        bool Delete(int id);
     }
 }

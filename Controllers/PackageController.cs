@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+using Repositories;
 using Services;
 
 namespace Controllers
@@ -23,6 +24,11 @@ namespace Controllers
         public List<Package> GetAll()
         {
             return packageService.GetAll();
+        }
+
+        public bool Delete(int id)
+        {
+            return packageService.Delete(id);
         }
     }
 }

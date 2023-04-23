@@ -11,6 +11,7 @@ namespace Models
         public readonly static string INSERT = " insert into Hotel (Name, IdAdress, Dt_Register, Price ) " +
             "values ( @Name, @IdAdress, @Dt_Register, @Price)";
         public readonly static string GETALL = " select Id, Name, IdAdress, Dt_Register, Price from Hotel";
+        public readonly static string DELETE = " delete from Hotel where Id = ";
 
         public int Id { get; set; }
 

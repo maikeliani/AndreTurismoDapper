@@ -57,8 +57,24 @@ namespace Repositories
                 return (int)db.ExecuteScalar(query, client);
 
             }
-
-
         }
+
+
+        public bool Delete(int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                db.Execute(Client.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
+
+
+
+
     }
 }

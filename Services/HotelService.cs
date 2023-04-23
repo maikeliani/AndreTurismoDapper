@@ -26,5 +26,10 @@ namespace Services
         {
             return hotelRepository.GetAll();
         }
+
+        public bool Delete(int id)
+        {
+            return hotelRepository.Delete(id);
+        }
     }
 }

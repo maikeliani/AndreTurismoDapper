@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(Hotel hotel);
 
         List<Hotel> GetAll();
+        bool Delete(int id);
     }
 }

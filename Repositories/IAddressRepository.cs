@@ -13,5 +13,6 @@ namespace Repositories
         bool Insert(Address address);
 
         List<Address> GetAll();
+        bool Delete(int id);
     }
 }

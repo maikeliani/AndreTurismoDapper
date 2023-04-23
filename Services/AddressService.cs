@@ -27,5 +27,10 @@ namespace Services
         {
             return addressRepository.GetAll();
         }
+
+        public bool Delete(int  id)
+        {
+            return addressRepository.Delete(id);
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace Controllers
         {
             return hotelService.GetAll();
         }
+
+        public bool Delete(int id)
+        {
+            return hotelService.Delete(id);
+        }
     }
 }

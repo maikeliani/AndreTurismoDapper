@@ -87,10 +87,49 @@ internal class Program
 
 
 
-       // inserindo package
 
-        var returnInformationPackage = (new PackageController().Insert(package) ? " package inserido com sucesso" : " erro ao cadastrar package");
-        Console.WriteLine(returnInformationPackage);
+
+        //deletando City
+        var deletedCity = (new CityController().Delete(3) ? " cidade deletada" : "erro ao deletar cidade");
+        Console.WriteLine(deletedCity);
+
+
+        //deletando Address
+        //var deletedAddress = (new AddressController().Delete(0) ? " endereço deletado" : "erro ao deletar endereço");
+        //Console.WriteLine(deletedAddress);
+
+
+
+        //deletando client
+        // var deletedClient = (new ClientController().Delete(2) ? " cliente deletado" : "erro ao deletar cliente");
+        //  Console.WriteLine(deletedClient);
+
+
+
+        //deletanto ticket
+        //var deletedTicket = (new TicketController().Delete(13) ? " ticket deletado" : "erro ao deletar ticket");
+        // Console.WriteLine(deletedTicket);
+
+
+        //deletando package
+
+        //var deletedPackage = (new PackageController().Delete(0) ? " package deletado" : "erro ao deletar package");
+        //Console.WriteLine(deletedPackage);
+
+
+        //deletanto hotel
+
+        // var DeleteHotel = (new HotelController().Delete(1) ? " Hotel deletado" : "erro ao deletar hotel");
+        // Console.WriteLine(DeleteHotel);
+
+
+
+
+
+        // inserindo package
+
+        //var returnInformationPackage = (new PackageController().Insert(package) ? " package inserido com sucesso" : " erro ao cadastrar package");
+        // Console.WriteLine(returnInformationPackage);
 
 
 
@@ -137,7 +176,9 @@ internal class Program
 
 
 
-        // new CityController().GetAll().ForEach(x => Console.WriteLine(x));
+        //new CityController().GetAll().ForEach(x => Console.WriteLine(x));
+
+        //new AddressController().GetAll().ForEach(x => Console.WriteLine(x));
 
     }
 }

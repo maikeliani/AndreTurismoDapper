@@ -25,7 +25,7 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();                
+                db.Open();
 
                 SqlCommand commandInsert = new SqlCommand(Ticket.INSERT, db);
 
@@ -35,7 +35,7 @@ namespace Repositories
                 commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", ticket.Dt_Register));
                 commandInsert.Parameters.Add(new SqlParameter("@Price", ticket.Price));
                 commandInsert.ExecuteNonQuery();
-              
+
                 status = true;
             }
             return status;
@@ -46,7 +46,7 @@ namespace Repositories
         {
             using (var db = new SqlConnection(Conn))
             {
-                
+
                 db.Open();
                 string strInsert = "insert into Ticket " +
                 "(SourceAdress, DestinationAdress , IdClient, Dt_Register, Price)" +
@@ -71,5 +71,30 @@ namespace Repositories
                 return (List<Ticket>)tickets;
             }
         }
+
+
+        public bool Delete(int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                db.Execute(Ticket.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
+
+
+
+
+
+
+
+
+
     }
+
+
 }

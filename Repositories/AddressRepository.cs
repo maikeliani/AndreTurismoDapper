@@ -58,7 +58,24 @@ namespace Repositories
                 
             }
             
-
         }
+
+
+        public bool Delete(int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                db.Execute(Address.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
+
+
+
+
     }
 }

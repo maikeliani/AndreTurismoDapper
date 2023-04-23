@@ -10,6 +10,7 @@ namespace Models
     {
         public readonly static string INSERT = " insert into Package (IdHotel, IdTicket, Dt_Register, Price, IdClient) values ( @IdHotel, @IdTicket, @Dt_Register, @Price, @IdClient)";
         public readonly static string GETALL = " select Id, IdHotel, IdTicket, Dt_Register, Price, IdClient from Ticket";
+        public readonly static string DELETE = " delete from Package where Id = ";
         public int Id { get; set; }
         public Hotel Hotel { get; set; }
 

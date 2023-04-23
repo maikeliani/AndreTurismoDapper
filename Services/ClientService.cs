@@ -26,5 +26,10 @@ namespace Services
         {
             return clientRepository.GetAll();
         }
+
+        public bool Delete(int id)
+        {
+            return clientRepository.Delete(id);
+        }
     }
 }
