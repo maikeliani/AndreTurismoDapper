@@ -32,6 +32,12 @@ namespace Services
             return cityRepository.GetAll();
         }
 
-       
+        public bool Update(string newDescription, int id)
+        {
+            return cityRepository.Update(newDescription, id);
+        }
+
+
+
     }
 }

@@ -14,5 +14,6 @@ namespace Repositories
 
         List<City> GetAll();
         bool Delete(int id);
+        bool Update(string newDescription, int id);
     }
 }

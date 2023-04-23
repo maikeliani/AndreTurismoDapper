@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -62,6 +64,24 @@ namespace Repositories
             {
                 db.Open();
                 db.Execute(City.DELETE + id);
+                status = true;
+            }
+            return status;
+        }
+
+        public bool Update(string newDescription, int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                SqlCommand commandInsert = new SqlCommand(City.UPDATE, db);
+
+                commandInsert.Parameters.Add(new SqlParameter("@Description", newDescription));
+                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
+                
+                commandInsert.ExecuteNonQuery();
+
                 status = true;
             }
             return status;

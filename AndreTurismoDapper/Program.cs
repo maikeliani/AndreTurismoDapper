@@ -124,10 +124,20 @@ internal class Program
 
 
 
+
+
+
+
+
+        //update city
+        var updatedCity = (new CityController().Update("Catanduva", 4) ? " cidade atualizada" : "erro ao atualizar cidade");
+        Console.WriteLine(updatedCity);
+
+
         //hotel
 
-        var updatedHotel = (new HotelController().Update("recanto do sossego", address2, 140, 3) ? " hotel atualizado" : " erro ao atualizar hotel");
-        Console.WriteLine(updatedHotel);
+        //var updatedHotel = (new HotelController().Update("recanto do sossego", address2, 140, 3) ? " hotel atualizado" : " erro ao atualizar hotel");
+        // Console.WriteLine(updatedHotel);
 
 
         //update ticket!!
@@ -139,6 +149,7 @@ internal class Program
         //update Package
 
         // var packageUpdated = (new PackageController().Update(15, 15, 200,39, 2) ? " package atualizado com sucesso" : "erro ao atualizar package");
+
 
         // Console.WriteLine(packageUpdated);
 

@@ -29,5 +29,10 @@ namespace Controllers
         {
             return cityService.Delete(id);
         }
+
+        public bool Update(string newDescription, int id)
+        {
+            return cityService.Update(newDescription, id);
+        }
     }
 }
