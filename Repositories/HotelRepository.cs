@@ -73,5 +73,24 @@ namespace Repositories
                 return (List<Hotel>)hotels;
             }
         }
+
+        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                SqlCommand commandInsert = new SqlCommand(Hotel.UPDATE, db);
+
+                commandInsert.Parameters.Add(new SqlParameter("@Name", newName));
+                commandInsert.Parameters.Add(new SqlParameter("@IdAdress", new AddressRepository().InsertAddress(newidAdress)));
+                commandInsert.Parameters.Add(new SqlParameter("@Price", newPrice));
+                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
+                commandInsert.ExecuteNonQuery();
+
+                status = true;
+            }
+            return status;
+        }
     }
 }

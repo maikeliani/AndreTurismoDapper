@@ -12,6 +12,8 @@ namespace Models
             "values ( @Name, @IdAdress, @Dt_Register, @Price)";
         public readonly static string GETALL = " select Id, Name, IdAdress, Dt_Register, Price from Hotel";
         public readonly static string DELETE = " delete from Hotel where Id = ";
+        public readonly static string UPDATE = " update  Hotel set Name = @Name, IdAdress = @IdAdress, Price = @Price where Id = @Id";
+
 
         public int Id { get; set; }
 

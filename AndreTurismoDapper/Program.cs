@@ -124,18 +124,22 @@ internal class Program
 
 
 
+        //hotel
 
+        var updatedHotel = (new HotelController().Update("recanto do sossego", address2, 140, 3) ? " hotel atualizado" : " erro ao atualizar hotel");
+        Console.WriteLine(updatedHotel);
 
 
         //update ticket!!
 
-        var ticketUpdated = (new TicketController().UpDate(address, address2, client, 56, 4) ? " ticker alterado" : " erro ao alterar ticket");
-        Console.WriteLine(ticketUpdated);
+        //  var ticketUpdated = (new TicketController().UpDate(address, address2, client, 56, 4) ? " ticker alterado" : " erro ao alterar ticket");
+        // Console.WriteLine(ticketUpdated);
 
 
         //update Package
 
         // var packageUpdated = (new PackageController().Update(15, 15, 200,39, 2) ? " package atualizado com sucesso" : "erro ao atualizar package");
+
         // Console.WriteLine(packageUpdated);
 
 

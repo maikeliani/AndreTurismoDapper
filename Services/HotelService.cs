@@ -31,5 +31,12 @@ namespace Services
         {
             return hotelRepository.Delete(id);
         }
+
+        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        {
+            return hotelRepository.Update(newName, newidAdress, newPrice, id);
+        }
+
+
     }
 }

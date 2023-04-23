@@ -29,5 +29,11 @@ namespace Controllers
         {
             return hotelService.Delete(id);
         }
+
+        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        {
+            return hotelService.Update(newName, newidAdress, newPrice, id);
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace Repositories
 
         List<Hotel> GetAll();
         bool Delete(int id);
+        bool Update(string newName, Address newidAdress, double newPrice, int id);
     }
 }
