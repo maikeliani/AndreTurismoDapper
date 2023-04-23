@@ -22,13 +22,13 @@ internal class Program
             ZipCode = "14804087",
             Complement = "",
             City = new City
-            {   
-                
+            {
+
                 Description = "Araraquara",
                 Dt_Register = DateTime.Now
             },
             Dt_Register = DateTime.Now
-            
+
         };
 
 
@@ -80,7 +80,7 @@ internal class Program
         {
             Hotel = hotel,
             Ticket = ticket,
-            Dt_Register= DateTime.Now,
+            Dt_Register = DateTime.Now,
             Price = 120,
             Client = client
         };
@@ -90,8 +90,8 @@ internal class Program
 
 
         //deletando City
-        var deletedCity = (new CityController().Delete(3) ? " cidade deletada" : "erro ao deletar cidade");
-        Console.WriteLine(deletedCity);
+        //  var deletedCity = (new CityController().Delete(3) ? " cidade deletada" : "erro ao deletar cidade");
+        //  Console.WriteLine(deletedCity);
 
 
         //deletando Address
@@ -167,18 +167,20 @@ internal class Program
 
 
 
-        //LISTA TODAS AS CIDADES INSERIDAS
-        // new CityController().GetAll().ForEach(x => Console.WriteLine(x));
-        // new AddressController().GetAll().ForEach(address => Console.WriteLine());
-        // Console.ReadLine();
+        // GET ALL
+        /*
+        new PackageController().GetAll().ForEach(x => Console.WriteLine(x));
+        new HotelController().GetAll().ForEach(x => Console.WriteLine(x));
 
-        // string returnCityAfterDelete = new CityController().Delete(2) ?" CIdade deletada ": " erro ao deletar cidade";
+        new AddressController().GetAll().ForEach(x => Console.WriteLine(x));
+        new TicketController().GetAll().ForEach(x => Console.WriteLine(x));
 
 
+        new ClientController().GetAll().ForEach(x => Console.WriteLine(x));
 
-        //new CityController().GetAll().ForEach(x => Console.WriteLine(x));
+        new CityController().GetAll().ForEach(x => Console.WriteLine(x));
+        */
 
-        //new AddressController().GetAll().ForEach(x => Console.WriteLine(x));
 
     }
 }
