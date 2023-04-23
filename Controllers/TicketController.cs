@@ -29,5 +29,11 @@ namespace Controllers
         { 
             return ticketService.Delete(id);
         }
+
+        public bool UpDate(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        {
+            return ticketService.UpDate(idSourceAddress, idDestinationAddress, idClient, price, id);
+        }
+
     }
 }

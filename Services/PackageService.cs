@@ -31,5 +31,13 @@ namespace Services
         {
             return packageRepository.Delete(id);
         }
+
+        public bool Update(int IdHotel, int IdTicket, double Price, int IdClient, int id)
+        {
+            return packageRepository.UpDate( IdHotel,  IdTicket,  Price,  IdClient,  id);
+        }
+
+
     }
+
 }

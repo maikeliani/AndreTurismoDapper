@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -87,13 +88,25 @@ namespace Repositories
 
 
 
+        public bool Update(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                SqlCommand commandInsert = new SqlCommand(Ticket.UPDATE, db);
 
+                commandInsert.Parameters.Add(new SqlParameter("@SourceAdress", new AddressRepository().InsertAddress(idSourceAddress)));
+                commandInsert.Parameters.Add(new SqlParameter("@DestinationAdress", new AddressRepository().InsertAddress(idDestinationAddress)));
+                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(idClient)));
+                commandInsert.Parameters.Add(new SqlParameter("@Price", price));
+                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
+                commandInsert.ExecuteNonQuery();
 
-
-
-
-
-
+                status = true;
+            }
+            return status;
+        }
     }
 
 

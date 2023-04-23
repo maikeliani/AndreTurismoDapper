@@ -31,5 +31,11 @@ namespace Services
         {
             return ticketRepository.Delete(id);
         }
+
+        public bool UpDate(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        {
+            return ticketRepository.Update(idSourceAddress, idDestinationAddress, idClient, price, id);
+        }
+
     }
 }

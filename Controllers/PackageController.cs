@@ -30,5 +30,13 @@ namespace Controllers
         {
             return packageService.Delete(id);
         }
+
+        public bool Update(int IdHotel, int IdTicket, double Price, int IdClient, int id)
+        {
+            return packageService.Update(IdHotel, IdTicket, Price, IdClient, id);
+        }
+
+
+
     }
 }

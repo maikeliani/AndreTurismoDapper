@@ -64,7 +64,24 @@ namespace Repositories
         }
 
 
+        public bool UpDate(int idHotel, int idTicket, double price, int idClient, int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                SqlCommand commandInsert = new SqlCommand(Package.UPDATE, db);
 
-
+                commandInsert.Parameters.Add(new SqlParameter("@IdHotel", idHotel));
+                commandInsert.Parameters.Add(new SqlParameter("@IdTicket",idTicket));
+                commandInsert.Parameters.Add(new SqlParameter("@Price", price));
+                commandInsert.Parameters.Add(new SqlParameter("@IdClient",idClient));
+                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
+                commandInsert.ExecuteNonQuery();
+                
+                status = true;
+            }
+            return status;
+        }
     }
 }

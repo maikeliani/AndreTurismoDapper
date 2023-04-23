@@ -12,6 +12,8 @@ namespace Models
             "values (@SourceAdress, @DestinationAdress, @IdClient, @Dt_Register, @Price )";
         public readonly static string GETALL = " select Id, SourceAdress, DestinationAdress, IdClient, Dt_Register, Price from Ticket";
         public readonly static string DELETE = " delete from Ticket where Id = ";
+        public readonly static string UPDATE = " update  Ticket set SourceAdress = @SourceAdress, DestinationAdress = @DestinationAdress, IdClient = @IdClient, Price = @Price where Id = @Id";
+
 
         public int Id { get; set; }
 

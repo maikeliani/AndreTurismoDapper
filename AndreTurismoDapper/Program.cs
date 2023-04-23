@@ -59,6 +59,15 @@ internal class Program
 
         };
 
+        var client2 = new Client()
+        {
+            Name = "Arnaldo",
+            Telephone = "284756655",
+            Address = address2,
+            Dt_Register = DateTime.Now,
+
+        };
+
         var hotel = new Hotel()
         {
             Name = " Trivado",
@@ -67,7 +76,24 @@ internal class Program
             Price = 123
         };
 
+        var hotel2 = new Hotel()
+        {
+            Name = " London",
+            Address = address2,
+            Dt_Register = DateTime.Now,
+            Price = 143
+        };
+
         var ticket = new Ticket()
+        {
+            SourceAddress = address2,
+            DestinationAddress = address,
+            Client = client2,
+            Dt_Register = DateTime.Now,
+            Price = 72
+        };
+
+        var ticket2 = new Ticket()
         {
             SourceAddress = address,
             DestinationAddress = address2,
@@ -81,11 +107,36 @@ internal class Program
             Hotel = hotel,
             Ticket = ticket,
             Dt_Register = DateTime.Now,
-            Price = 120,
+            Price = 170,
+            Client = client
+        };
+
+        var package2 = new Package()
+        {
+            Hotel = hotel2,
+            Ticket = ticket2,
+            Dt_Register = DateTime.Now,
+            Price = 245,
             Client = client
         };
 
 
+
+
+
+
+
+
+        //update ticket!!
+
+        var ticketUpdated = (new TicketController().UpDate(address, address2, client, 56, 4) ? " ticker alterado" : " erro ao alterar ticket");
+        Console.WriteLine(ticketUpdated);
+
+
+        //update Package
+
+        // var packageUpdated = (new PackageController().Update(15, 15, 200,39, 2) ? " package atualizado com sucesso" : "erro ao atualizar package");
+        // Console.WriteLine(packageUpdated);
 
 
 
@@ -128,8 +179,8 @@ internal class Program
 
         // inserindo package
 
-        //var returnInformationPackage = (new PackageController().Insert(package) ? " package inserido com sucesso" : " erro ao cadastrar package");
-        // Console.WriteLine(returnInformationPackage);
+        //var returnInformationPackage = (new PackageController().Insert(package2) ? " package inserido com sucesso" : " erro ao cadastrar package");
+        //Console.WriteLine(returnInformationPackage);
 
 
 

@@ -14,5 +14,6 @@ namespace Repositories
 
         List<Ticket> GetAll();
         bool Delete(int id);
+        bool Update(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id);
     }
 }
