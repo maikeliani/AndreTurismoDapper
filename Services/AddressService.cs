@@ -32,5 +32,12 @@ namespace Services
         {
             return addressRepository.Delete(id);
         }
+
+        public bool UpDate(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+        {
+            return addressRepository.Update(newStreet, newNumber, newNeighborHood, newZipCode, newComplement, id);
+        }
+
+
     }
 }

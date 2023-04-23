@@ -124,116 +124,101 @@ internal class Program
 
 
 
+        //--------------------------------    UPDATES    ---------------------------------
 
-
-
-
+        /*
+        // update adress
+        var updatedAddress = (new AddressController().UpDate(" rua das andorinhas", 44, "vila da paz", "14100-333", " ", 4) ? " endereço atualizado" : " erro ao atualizar endereço");
+        Console.WriteLine(updatedAddress);
 
         //update city
         var updatedCity = (new CityController().Update("Catanduva", 4) ? " cidade atualizada" : "erro ao atualizar cidade");
         Console.WriteLine(updatedCity);
 
-
-        //hotel
-
-        //var updatedHotel = (new HotelController().Update("recanto do sossego", address2, 140, 3) ? " hotel atualizado" : " erro ao atualizar hotel");
-        // Console.WriteLine(updatedHotel);
-
+        // update hotel
+        var updatedHotel = (new HotelController().Update("recanto do sossego", address2, 140, 3) ? " hotel atualizado" : " erro ao atualizar hotel");
+        Console.WriteLine(updatedHotel);
 
         //update ticket!!
-
-        //  var ticketUpdated = (new TicketController().UpDate(address, address2, client, 56, 4) ? " ticker alterado" : " erro ao alterar ticket");
-        // Console.WriteLine(ticketUpdated);
-
+        var ticketUpdated = (new TicketController().UpDate(address, address2, client, 56, 4) ? " ticker alterado" : " erro ao alterar ticket");
+        Console.WriteLine(ticketUpdated);
 
         //update Package
-
-        // var packageUpdated = (new PackageController().Update(15, 15, 200,39, 2) ? " package atualizado com sucesso" : "erro ao atualizar package");
-
-
-        // Console.WriteLine(packageUpdated);
-
-
-
-        //deletando City
-        //  var deletedCity = (new CityController().Delete(3) ? " cidade deletada" : "erro ao deletar cidade");
-        //  Console.WriteLine(deletedCity);
-
-
-        //deletando Address
-        //var deletedAddress = (new AddressController().Delete(0) ? " endereço deletado" : "erro ao deletar endereço");
-        //Console.WriteLine(deletedAddress);
-
-
-
-        //deletando client
-        // var deletedClient = (new ClientController().Delete(2) ? " cliente deletado" : "erro ao deletar cliente");
-        //  Console.WriteLine(deletedClient);
-
-
-
-        //deletanto ticket
-        //var deletedTicket = (new TicketController().Delete(13) ? " ticket deletado" : "erro ao deletar ticket");
-        // Console.WriteLine(deletedTicket);
-
-
-        //deletando package
-
-        //var deletedPackage = (new PackageController().Delete(0) ? " package deletado" : "erro ao deletar package");
-        //Console.WriteLine(deletedPackage);
-
-
-        //deletanto hotel
-
-        // var DeleteHotel = (new HotelController().Delete(1) ? " Hotel deletado" : "erro ao deletar hotel");
-        // Console.WriteLine(DeleteHotel);
-
-
-
-
-
-        // inserindo package
-
-        //var returnInformationPackage = (new PackageController().Insert(package2) ? " package inserido com sucesso" : " erro ao cadastrar package");
-        //Console.WriteLine(returnInformationPackage);
-
-
-
-
-        //inserindo ticket
-
-        // string returnInformationTicket = (new TicketController().Insert(ticket) ? " Ticket adicionado" : " erro ao adicionar ticket");
-        // Console.WriteLine(returnInformationTicket);
-
-
-
-        //inserindo hotel
-        /*
-        string informationHotel = (new HotelController().Insert(hotel) ? "Hotel inserido" : " erro ao inserir hotel");
-        Console.WriteLine(informationHotel);
+        var packageUpdated = (new PackageController().Update(15, 15, 200, 39, 2) ? " package atualizado com sucesso" : "erro ao atualizar package");
+        Console.WriteLine(packageUpdated);
         */
 
-        //INSERINDO CLIENTE
-        //string informationClient = (new ClientController().Insert(client) ? "cliente inserido" : " erro ao inserir cliente");
-        // Console.WriteLine(informationClient);
+
+
+
+
+        //----------------------------    DELETES      -----------------------------------
+
+        /*
+        //deletando package
+        var deletedPackage = (new PackageController().Delete(0) ? " package deletado" : "erro ao deletar package");
+        Console.WriteLine(deletedPackage);
+
+        //deletanto hotel
+         var DeleteHotel = (new HotelController().Delete(1) ? " Hotel deletado" : "erro ao deletar hotel");
+        Console.WriteLine(DeleteHotel);
+
+        //deletanto ticket
+        var deletedTicket = (new TicketController().Delete(13) ? " ticket deletado" : "erro ao deletar ticket");
+         Console.WriteLine(deletedTicket);
+
+        //deletando client
+         var deletedClient = (new ClientController().Delete(2) ? " cliente deletado" : "erro ao deletar cliente");
+         Console.WriteLine(deletedClient);
+
+        //deletando Address
+        var deletedAddress = (new AddressController().Delete(0) ? " endereço deletado" : "erro ao deletar endereço");
+        Console.WriteLine(deletedAddress);
+
+        //deletando City
+          var deletedCity = (new CityController().Delete(3) ? " cidade deletada" : "erro ao deletar cidade");
+          Console.WriteLine(deletedCity);
+        */
+
+
+
+        /* --------------------------------   INSERTS   --------------------------------
+        //INSERINDO CIDADE
+        string returnInformation = (new CityController().Insert(data) ? "Cidade inserida" : "Erro ao inserir cidade");
+        Console.WriteLine(returnInformation);
 
 
         //inserindo endereco
 
-        // string returnAddress = (new AddressController().Insert(address2) ? "Endereço cadastrado" : " erro ao cadastrar endereço");
-        // Console.WriteLine(returnAddress);
+        string returnAddress = (new AddressController().Insert(address2) ? "Endereço cadastrado" : " erro ao cadastrar endereço");
+        Console.WriteLine(returnAddress);
+
+        //INSERINDO CLIENTE
+        string informationClient = (new ClientController().Insert(client) ? "cliente inserido" : " erro ao inserir cliente");
+        Console.WriteLine(informationClient);
+
+        //inserindo hotel
+
+        string informationHotel = (new HotelController().Insert(hotel) ? "Hotel inserido" : " erro ao inserir hotel");
+        Console.WriteLine(informationHotel);
 
 
-        /*
-        //INSERINDO CIDADE
-        string returnInformation = (new CityController().Insert(data) ? "Cidade inserida" : "Erro ao inserir cidade");
-        Console.WriteLine(returnInformation);
+        //inserindo ticket
+
+        string returnInformationTicket = (new TicketController().Insert(ticket) ? " Ticket adicionado" : " erro ao adicionar ticket");
+        Console.WriteLine(returnInformationTicket);
+
+
+        // inserindo package
+
+        var returnInformationPackage = (new PackageController().Insert(package2) ? " package inserido com sucesso" : " erro ao cadastrar package");
+        Console.WriteLine(returnInformationPackage);
         */
 
 
 
+        //--------------------    GET ALL    -----------------------------------
 
-        // GET ALL
         /*
         new PackageController().GetAll().ForEach(x => Console.WriteLine(x));
         new HotelController().GetAll().ForEach(x => Console.WriteLine(x));

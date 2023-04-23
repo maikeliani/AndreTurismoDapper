@@ -13,6 +13,7 @@ namespace Models
         public readonly static string GETALL = " select Id, Street, Number, NeighborHood, ZipCode, Complement," +
             " IdCity, Dt_Register from Adress";
         public readonly static string DELETE = " delete from Adress where Id = ";
+        public readonly static string UPDATE = "update Adress set Street = @newStreet, Number = @newNumber, NeighborHood = @newNeighborHood, ZipCode = @newZipCode, Complement = @newComplement where Id = @id";
 
         public int Id { get; set; }
         public string Street { get; set; }

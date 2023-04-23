@@ -14,5 +14,6 @@ namespace Repositories
 
         List<Address> GetAll();
         bool Delete(int id);
+        bool Update(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id);
     }
 }

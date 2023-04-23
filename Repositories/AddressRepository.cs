@@ -72,10 +72,26 @@ namespace Repositories
             }
             return status;
         }
+    
 
+        public bool Update(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {
+                db.Open();
+                SqlCommand commandInsert = new SqlCommand(Address.UPDATE, db);
+                commandInsert.Parameters.Add(new SqlParameter("@newStreet", newStreet));
+                commandInsert.Parameters.Add(new SqlParameter("@newNumber", newNumber));
+                commandInsert.Parameters.Add(new SqlParameter("@newNeighborHood", newNeighborHood));
+                commandInsert.Parameters.Add(new SqlParameter("@newZipCode", newZipCode));
+                commandInsert.Parameters.Add(new SqlParameter("@newComplement", newComplement));
+                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
+                commandInsert.ExecuteNonQuery();
 
-
-
-
+                status = true;
+            }
+            return status;
+        }
     }
 }

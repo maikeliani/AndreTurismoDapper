@@ -29,5 +29,11 @@ namespace Controllers
         {
             return addressService.Delete(id);
         }
+
+        
+        public bool UpDate(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+        {
+            return addressService.UpDate(newStreet, newNumber, newNeighborHood, newZipCode, newComplement, id);
+        }
     }
 }
