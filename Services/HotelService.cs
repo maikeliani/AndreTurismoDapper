@@ -17,7 +17,7 @@ namespace Services
             hotelRepository = new HotelRepository();
         }
 
-        public bool Insert(Hotel hotel)
+        public int Insert(Hotel hotel)
         {
             return hotelRepository.Insert(hotel);
         }
@@ -32,9 +32,9 @@ namespace Services
             return hotelRepository.Delete(id);
         }
 
-        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        public bool Update(Hotel hotel)
         {
-            return hotelRepository.Update(newName, newidAdress, newPrice, id);
+            return hotelRepository.Update(hotel);
         }
 
 

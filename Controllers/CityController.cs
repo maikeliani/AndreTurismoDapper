@@ -15,7 +15,7 @@ namespace Controllers
         {
             cityService = new CityService();
         }
-        public bool Insert(City city)
+        public int Insert(City city)
         {
             return cityService.Insert(city);
         }
@@ -30,9 +30,9 @@ namespace Controllers
             return cityService.Delete(id);
         }
 
-        public bool Update(string newDescription, int id)
+        public bool Update(City city)
         {
-            return cityService.Update(newDescription, id);
+            return cityService.Update( city);
         }
     }
 }

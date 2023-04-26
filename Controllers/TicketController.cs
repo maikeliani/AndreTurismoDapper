@@ -15,7 +15,7 @@ namespace Controllers
         {
             ticketService = new TicketService();
         }
-        public bool Insert(Ticket ticket)
+        public int Insert(Ticket ticket)
         {
             return ticketService.Insert(ticket);
         }
@@ -30,9 +30,9 @@ namespace Controllers
             return ticketService.Delete(id);
         }
 
-        public bool UpDate(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        public bool UpDate(Ticket ticket)
         {
-            return ticketService.UpDate(idSourceAddress, idDestinationAddress, idClient, price, id);
+            return ticketService.UpDate(ticket);
         }
 
     }

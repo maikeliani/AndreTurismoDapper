@@ -17,7 +17,7 @@ namespace Services
             cityRepository = new CityRepository();
         }
 
-        public bool Insert(City city)
+        public int Insert(City city)
         {
             return cityRepository.Insert(city);
         }
@@ -32,9 +32,9 @@ namespace Services
             return cityRepository.GetAll();
         }
 
-        public bool Update(string newDescription, int id)
+        public bool Update(City city)
         {
-            return cityRepository.Update(newDescription, id);
+            return cityRepository.Update(city);
         }
 
 

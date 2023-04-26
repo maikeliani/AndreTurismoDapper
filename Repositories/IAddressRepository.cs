@@ -10,10 +10,10 @@ namespace Repositories
 {
     public interface IAddressRepository
     {
-        bool Insert(Address address);
+        int Insert(Address address);
 
         List<Address> GetAll();
         bool Delete(int id);
-        bool Update(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id);
+        bool Update(Address address);
     }
 }

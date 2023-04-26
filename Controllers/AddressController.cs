@@ -12,12 +12,19 @@ namespace Controllers
     public class AddressController
     {
         private AddressService addressService;
+        private CityService cityService;
         public AddressController()
         {
             addressService = new AddressService();
+            cityService = new CityService();
         }
-        public bool Insert(Address address)
+        public int Insert(Address address)
         {
+            var idCity = cityService.Insert(address.City); //  o metodo Insert devolve  um id(int)
+            address.City = new City()
+            {
+                Id = idCity
+            };
             return addressService.Insert(address);
         }
 
@@ -31,9 +38,9 @@ namespace Controllers
         }
 
         
-        public bool UpDate(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+        public bool UpDate(Address address)
         {
-            return addressService.UpDate(newStreet, newNumber, newNeighborHood, newZipCode, newComplement, id);
+            return addressService.UpDate(address);
         }
     }
 }

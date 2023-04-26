@@ -22,51 +22,46 @@ namespace Repositories
         }
         public List<Client> GetAll()
         {
+            List<Client> list = new List<Client>();
             using (var db = new SqlConnection(Conn))
             {
                 var clients = db.Query<Client>(Client.GETALL);
-                return (List<Client>)clients;
+                list = (List<Client>)clients;
             }
-        }
-
-        public bool Insert(Client client)
-        {
-            var status = false;
-            using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                string query = Client.INSERT.Replace("@IdAdress", new AddressRepository().InsertAddress(client.Address).ToString());
-
-                db.Execute(query, client);
-                status = true;
-            }
-            return status;
+            return list;
         }
         
-        public int InsertClient(Client client)
+        public int Insert(Client client)
         {
-            string strInsert = "insert into Client (Name, Telephone, IdAdress, Dt_Register) values (@Name, @Telephone, @IdAdress, @Dt_Register); " +
-                "select cast(scope_identity() as int)";
+            var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-
-                string query = strInsert.Replace("@IdAdress", new AddressRepository().InsertAddress(client.Address).ToString());
-
-
-                return (int)db.ExecuteScalar(query, client);
-
+                id = db.ExecuteScalar<int>(Client.INSERT, new { @Name = client.Name, @Telephone = client.Telephone, @IdAdress = client.Address.Id, @Dt_Register = client.Dt_Register });
             }
+            return id;
         }
-
 
         public bool Delete(int id)
         {
             var status = false;
+
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(Client.DELETE + id);
+
+                db.Execute(Client.DELETE, new { @Id = id });
+                status = true;
+
+            }
+            return status;
+        }
+
+        public bool Update(Client client)
+        {
+            var status = false;
+            using (var db = new SqlConnection(Conn))
+            {                
+                db.Execute(Client.UPDATE, new {@Id = client.Id, @Name = client.Name, @Telephone = client.Telephone, @IdAdress = client.Address.Id, @Dt_Register = client.Dt_Register });
+
                 status = true;
             }
             return status;

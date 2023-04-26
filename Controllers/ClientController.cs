@@ -15,7 +15,7 @@ namespace Controllers
         {
             clientService = new ClientService();
         }
-        public bool Insert(Client client)
+        public int Insert(Client client)
         {
             return clientService.Insert(client);
         }
@@ -28,6 +28,11 @@ namespace Controllers
         public bool Delete(int  id)
         { 
             return clientService.Delete(id);
+        }
+
+        public bool Update(Client client)
+        {
+            return clientService.Update(client);
         }
     }
 }

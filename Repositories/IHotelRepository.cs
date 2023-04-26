@@ -10,10 +10,10 @@ namespace Repositories
 {
     public interface IHotelRepository
     {
-        bool Insert(Hotel hotel);
+        int Insert(Hotel hotel);
 
         List<Hotel> GetAll();
         bool Delete(int id);
-        bool Update(string newName, Address newidAdress, double newPrice, int id);
+        bool Update(Hotel hotel);
     }
 }

@@ -15,7 +15,7 @@ namespace Controllers
         {
             hotelService = new HotelService();
         }
-        public bool Insert(Hotel hotel)
+        public int Insert(Hotel hotel)
         {
             return hotelService.Insert(hotel);
         }
@@ -30,9 +30,9 @@ namespace Controllers
             return hotelService.Delete(id);
         }
 
-        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        public bool Update(Hotel hotel)
         {
-            return hotelService.Update(newName, newidAdress, newPrice, id);
+            return hotelService.Update(hotel);
         }
 
     }

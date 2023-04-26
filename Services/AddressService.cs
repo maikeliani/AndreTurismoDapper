@@ -18,7 +18,7 @@ namespace Services
             addressRepository = new AddressRepository();
         }
 
-        public bool Insert(Address address)
+        public int Insert(Address address)
         {
             return addressRepository.Insert(address);
         }
@@ -33,9 +33,9 @@ namespace Services
             return addressRepository.Delete(id);
         }
 
-        public bool UpDate(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+        public bool UpDate(Address address)
         {
-            return addressRepository.Update(newStreet, newNumber, newNeighborHood, newZipCode, newComplement, id);
+            return addressRepository.Update(address);
         }
 
 

@@ -24,63 +24,45 @@ namespace Repositories
             Conn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         }
 
-        public bool Insert(City city)
+        public int Insert(City city)
         {
-            var status = false;
-            using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                db.Execute(City.INSERT, city);
-                status = true;
+            var id =0;
+            using (var db = new SqlConnection(Conn))            {
+                
+              id =  db.ExecuteScalar<int>(City.INSERT, new {@Description = city.Description, @Dt_Register = city.Dt_Register});                
             }
-            return status;
-        }
-
-        public int InsertCity(City city)
-        {
-            string strInsert = "insert into City (Description, Dt_Register) values (@Description, @Dt_Register ); " +
-                "select cast(scope_identity() as int)";
-            using (var db = new SqlConnection(Conn))
-            {
-                db.Open();                
-                return (int)db.ExecuteScalar(strInsert, city);
-            }           
+            return id;
         }
 
 
         public List<City> GetAll()
         {
+            List<City> list = new List<City>();
             using (var db = new SqlConnection(Conn))
             {
                 var cities = db.Query<City>(City.GETALL);
-                return (List<City>)cities;
+                list = (List<City>)cities;
             }
+            return list;
         }
 
         public bool Delete(int id)
         {
             var status = false;
             using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                db.Execute(City.DELETE + id);
+            {               
+                db.Execute(City.DELETE, new { @Id = id });
                 status = true;
             }
             return status;
         }
 
-        public bool Update(string newDescription, int id)
+        public bool Update(City city)
         {
             var status = false;
-            using (var db = new SqlConnection(Conn))
-            {
+            using (var db = new SqlConnection(Conn))            {
                 db.Open();
-                SqlCommand commandInsert = new SqlCommand(City.UPDATE, db);
-
-                commandInsert.Parameters.Add(new SqlParameter("@Description", newDescription));
-                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
-                
-                commandInsert.ExecuteNonQuery();
+                db.Execute(City.UPDATE, new { @Id = city.Id, @Description = city.Description, @Dt_Register = city.Dt_Register });
 
                 status = true;
             }

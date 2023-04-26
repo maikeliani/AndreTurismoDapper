@@ -10,9 +10,10 @@ namespace Repositories
 {
     public interface IClientRepository
     {
-        bool Insert(Client client);
+        int Insert(Client client);
 
         List<Client> GetAll();
         bool Delete(int id);
+        bool Update(Client client);
     }
 }

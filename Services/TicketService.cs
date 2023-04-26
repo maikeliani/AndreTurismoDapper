@@ -17,7 +17,7 @@ namespace Services
             ticketRepository = new TicketRepository();
         }
 
-        public bool Insert(Ticket ticket)
+        public int Insert(Ticket ticket)
         {
             return ticketRepository.Insert(ticket);
         }
@@ -32,9 +32,9 @@ namespace Services
             return ticketRepository.Delete(id);
         }
 
-        public bool UpDate(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        public bool UpDate(Ticket ticket)
         {
-            return ticketRepository.Update(idSourceAddress, idDestinationAddress, idClient, price, id);
+            return ticketRepository.Update(ticket);
         }
 
     }

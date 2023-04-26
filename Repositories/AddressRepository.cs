@@ -21,74 +21,47 @@ namespace Repositories
         }
         public List<Address> GetAll()
         {
+            List<Address> list = new List<Address>();
             using (var db = new SqlConnection(Conn))
             {
                 var addresses = db.Query<Address>(Address.GETALL);
-                return (List<Address>)addresses;
+                list = (List<Address>)addresses;
             }
+            return list;
         }
 
-        public bool Insert(Address address)
+        public int Insert(Address address)
         {
-            var status = false;
+            var id = 0;
             using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                string query = Address.INSERT.Replace("@IdCity",new CityRepository().InsertCity(address.City).ToString());
-                db.Execute(query,address);
-                status = true;
-            }
-            return status;
-        }
-
-        public int InsertAddress(Address address)
-        {
-            string strInsert = "insert into Adress " +
-                "(Street, Number, NeighborHood, ZipCode, Complement, IdCity, Dt_Register)" +
-                " values (@Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity , @Dt_Register ); " +
-                "select cast(scope_identity() as int)";
-            using (var db = new SqlConnection(Conn))
-            {   
-                db.Open();
-
-                string query = strInsert.Replace("@IdCity", new CityRepository().InsertCity(address.City).ToString());
-
-
-                return (int)db.ExecuteScalar(query, address);
+            {              
+              id =  db.ExecuteScalar<int>(Address.INSERT, new { @Street = address.Street, @Number = address.Number, @Neighborhood = address.NeighborHood, @ZipCode = address.ZipCode, @Complement = address.Complement, @IdCity = address.City.Id, @Dt_Register = address.Dt_Register });               
                 
             }
-            
+            return id;
         }
+       
 
 
         public bool Delete(int id)
         {
-            var status = false;
+             var status = false;
+            
             using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                db.Execute(Address.DELETE + id);
+            {                               
+                db.Execute(Address.DELETE, new {@Id = id});
                 status = true;
             }
             return status;
         }
-    
 
-        public bool Update(string newStreet, int newNumber, string newNeighborHood, string newZipCode, string newComplement, int id)
+
+        public bool Update(Address address)
         {
             var status = false;
             using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                SqlCommand commandInsert = new SqlCommand(Address.UPDATE, db);
-                commandInsert.Parameters.Add(new SqlParameter("@newStreet", newStreet));
-                commandInsert.Parameters.Add(new SqlParameter("@newNumber", newNumber));
-                commandInsert.Parameters.Add(new SqlParameter("@newNeighborHood", newNeighborHood));
-                commandInsert.Parameters.Add(new SqlParameter("@newZipCode", newZipCode));
-                commandInsert.Parameters.Add(new SqlParameter("@newComplement", newComplement));
-                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
-                commandInsert.ExecuteNonQuery();
-
+            {                                                    
+                db.Execute(Address.UPDATE, new { @Id = address.Id ,@Street = address.Street, @Number = address.Number, @NeighborHood = address.NeighborHood, @ZipCode = address.ZipCode, @Complement = address.Complement, @IdCity = address.City.Id, @DtRegisterAddress = address.Dt_Register });
                 status = true;
             }
             return status;

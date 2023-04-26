@@ -10,10 +10,10 @@ namespace Repositories
 {
     public interface ITicketRepository
     {
-        bool Insert(Ticket ticket);
+        int Insert(Ticket ticket);
 
         List<Ticket> GetAll();
         bool Delete(int id);
-        bool Update(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id);
+        bool Update(Ticket ticket);
     }
 }

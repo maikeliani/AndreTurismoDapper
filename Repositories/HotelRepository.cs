@@ -19,47 +19,24 @@ namespace Repositories
             Conn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         }
 
-        public bool Insert(Hotel hotel)
+        public int Insert(Hotel hotel)
         {
-            var status = false;
+            var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                string query = Hotel.INSERT.Replace("@IdAdress", new AddressRepository().InsertAddress(hotel.Address).ToString());
-
-                db.Execute(query, hotel);
-                status = true;
+                id = db.ExecuteScalar<int>(City.INSERT, new { @Name = hotel.Name, @IdAdress = hotel.Address.Id, @Dt_Register = hotel.Dt_Register, @Price = hotel.Price });
             }
-            return status;
+            return id;
         }
 
-
-        public int InsertHotel(Hotel hotel)
-        {           
-                string strInsert = "insert into Hotel " +
-                "(Name, IdAdress , Dt_Register, Price) " +
-                "values (@Name, @IdAdress, @Dt_Register, @Price); " +
-            "select cast(scope_identity() as int)";
-
-            using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-
-                var query = strInsert.Replace("@IdAdress", new AddressRepository().InsertAddress(hotel.Address).ToString());
-
-                return (int)db.ExecuteScalar(query, hotel);
-
-            }
-        
-        }
 
         public bool Delete(int id)
         {
             var status = false;
+
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(Hotel.DELETE + id);
+                db.Execute(Hotel.DELETE, new { @Id = id });
                 status = true;
             }
             return status;
@@ -67,30 +44,27 @@ namespace Repositories
 
         public List<Hotel> GetAll()
         {
+            List<Hotel> list = new List<Hotel>();
             using (var db = new SqlConnection(Conn))
             {
                 var hotels = db.Query<Hotel>(Hotel.GETALL);
-                return (List<Hotel>)hotels;
+                list = (List<Hotel>)hotels;
             }
+            return list;
         }
 
-        public bool Update(string newName, Address newidAdress, double newPrice, int id)
+        public bool Update(Hotel hotel)
         {
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                SqlCommand commandInsert = new SqlCommand(Hotel.UPDATE, db);
-
-                commandInsert.Parameters.Add(new SqlParameter("@Name", newName));
-                commandInsert.Parameters.Add(new SqlParameter("@IdAdress", new AddressRepository().InsertAddress(newidAdress)));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", newPrice));
-                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
-                commandInsert.ExecuteNonQuery();
+                db.Execute(Hotel.UPDATE, new { @Id = hotel.Id, @Name = hotel.Name, @IdAdress = hotel.Address.Id, @Dt_Register = hotel.Dt_Register, @Price = hotel.Price });
 
                 status = true;
             }
             return status;
         }
+
+
     }
 }

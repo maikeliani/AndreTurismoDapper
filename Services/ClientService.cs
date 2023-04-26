@@ -17,7 +17,7 @@ namespace Services
             clientRepository = new ClientRepository();
         }
 
-        public bool Insert(Client client)
+        public int Insert(Client client)
         {
             return clientRepository.Insert(client);
         }
@@ -30,6 +30,11 @@ namespace Services
         public bool Delete(int id)
         {
             return clientRepository.Delete(id);
+        }
+
+        public bool Update(Client client)
+        {
+            return clientRepository.Update(client);
         }
     }
 }

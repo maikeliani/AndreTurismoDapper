@@ -21,56 +21,25 @@ namespace Repositories
 
         }
 
-        public bool Insert(Ticket ticket)
+        public int Insert(Ticket ticket)
         {
-            var status = false;
+            var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-
-                SqlCommand commandInsert = new SqlCommand(Ticket.INSERT, db);
-
-                commandInsert.Parameters.Add(new SqlParameter("@SourceAdress", new AddressRepository().InsertAddress(ticket.SourceAddress).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@DestinationAdress", new AddressRepository().InsertAddress(ticket.DestinationAddress).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(ticket.Client).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", ticket.Dt_Register));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", ticket.Price));
-                commandInsert.ExecuteNonQuery();
-
-                status = true;
+                id = db.ExecuteScalar<int>(Ticket.INSERT, new {@SourceAdress = ticket.SourceAddress.Id, @DestinationAdress = ticket.DestinationAddress.Id, @IdClient = ticket.Client.Id, @Dt_Register = ticket.Dt_Register, @Price = ticket.Price});
             }
-            return status;
+            return id;
         }
-
-
-        public int InsertTicket(Ticket ticket)
-        {
-            using (var db = new SqlConnection(Conn))
-            {
-
-                db.Open();
-                string strInsert = "insert into Ticket " +
-                "(SourceAdress, DestinationAdress , IdClient, Dt_Register, Price)" +
-                " values (@SourceAdress, @DestinationAdress, @IdClient, @Dt_Register, @Price); " +
-                "select cast(scope_identity() as int)";
-                SqlCommand commandInsert = new SqlCommand(strInsert, db);
-                commandInsert.Parameters.Add(new SqlParameter("@SourceAdress", new AddressRepository().InsertAddress(ticket.SourceAddress).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@DestinationAdress", new AddressRepository().InsertAddress(ticket.DestinationAddress).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(ticket.Client).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", ticket.Dt_Register));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", ticket.Price));
-                return (int)commandInsert.ExecuteScalar();
-            }
-        }
-
 
         public List<Ticket> GetAll()
         {
+            List<Ticket> list = new List<Ticket>();
             using (var db = new SqlConnection(Conn))
             {
                 var tickets = db.Query<Ticket>(Ticket.GETALL);
-                return (List<Ticket>)tickets;
+                list = (List<Ticket>)tickets;
             }
+            return list;
         }
 
 
@@ -79,35 +48,26 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(Ticket.DELETE + id);
+                db.Execute(Ticket.DELETE, new { @Id = id });
                 status = true;
             }
             return status;
         }
 
-
-
-        public bool Update(Address idSourceAddress, Address idDestinationAddress, Client idClient, double price, int id)
+        public bool Update(Ticket ticket)
         {
             var status = false;
             using (var db = new SqlConnection(Conn))
-            {
-                db.Open();
-                SqlCommand commandInsert = new SqlCommand(Ticket.UPDATE, db);
-
-                commandInsert.Parameters.Add(new SqlParameter("@SourceAdress", new AddressRepository().InsertAddress(idSourceAddress)));
-                commandInsert.Parameters.Add(new SqlParameter("@DestinationAdress", new AddressRepository().InsertAddress(idDestinationAddress)));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(idClient)));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", price));
-                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
-                commandInsert.ExecuteNonQuery();
+            {               
+                db.Execute(Ticket.UPDATE, new { @Id = ticket.Id, @SourceAdress = ticket.SourceAddress.Id, @DestinationAdress = ticket.DestinationAddress.Id, @IdClient = ticket.Client.Id, @Dt_Register = ticket.Dt_Register, @Price = ticket.Price });
 
                 status = true;
             }
             return status;
         }
-        
+
+
+
     }
 
 

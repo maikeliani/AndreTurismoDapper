@@ -37,11 +37,11 @@ namespace Repositories
                 db.Open();
                 SqlCommand commandInsert = new SqlCommand(Package.INSERT, db);
 
-                commandInsert.Parameters.Add(new SqlParameter("@IdHotel", new HotelRepository().InsertHotel(package.Hotel).ToString()));                
-                commandInsert.Parameters.Add(new SqlParameter("@IdTicket", new TicketRepository().InsertTicket(package.Ticket).ToString()));
+               // commandInsert.Parameters.Add(new SqlParameter("@IdHotel", new HotelRepository().InsertHotel(package.Hotel).ToString()));                
+               // commandInsert.Parameters.Add(new SqlParameter("@IdTicket", new TicketRepository().InsertTicket(package.Ticket).ToString()));
                 commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", package.Dt_Register));
                 commandInsert.Parameters.Add(new SqlParameter("@Price", package.Price));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(package.Client).ToString()));
+               // commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(package.Client).ToString()));
                 
                 commandInsert.ExecuteNonQuery();
                 

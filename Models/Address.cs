@@ -9,11 +9,11 @@ namespace Models
     public class Address
     {
         public readonly static string INSERT = " insert into Adress (Street, Number, NeighborHood, ZipCode, " +
-            "Complement, IdCity, Dt_Register) values ( @Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity, @Dt_Register)";
+            "Complement, IdCity, Dt_Register) values ( @Street, @Number, @NeighborHood, @ZipCode, @Complement, @IdCity, @Dt_Register); Select cast(scope_identity() as int)";
         public readonly static string GETALL = " select Id, Street, Number, NeighborHood, ZipCode, Complement," +
             " IdCity, Dt_Register from Adress";
-        public readonly static string DELETE = " delete from Adress where Id = ";
-        public readonly static string UPDATE = "update Adress set Street = @newStreet, Number = @newNumber, NeighborHood = @newNeighborHood, ZipCode = @newZipCode, Complement = @newComplement where Id = @id";
+        public readonly static string DELETE = " delete from Adress where Id =@Id"; 
+        public readonly static string UPDATE = "update Adress set Street =  @Street, Number = @Number, NeighborHood = @NeighborHood, ZipCode = @ZipCode, Complement = @Complement where Id = @Id";
 
         public int Id { get; set; }
         public string Street { get; set; }
