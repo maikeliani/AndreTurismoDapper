@@ -61,7 +61,15 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {                                                    
-                db.Execute(Address.UPDATE, new { @Id = address.Id ,@Street = address.Street, @Number = address.Number, @NeighborHood = address.NeighborHood, @ZipCode = address.ZipCode, @Complement = address.Complement, @IdCity = address.City.Id, @DtRegisterAddress = address.Dt_Register });
+                db.Execute(Address.UPDATE, new {
+                    @Id = address.Id ,
+                    @Street = address.Street,
+                    @Number = address.Number,
+                    @NeighborHood = address.NeighborHood,
+                    @ZipCode = address.ZipCode,
+                    @Complement = address.Complement,
+                    @IdCity = address.City.Id,
+                    @DtRegisterAddress = address.Dt_Register });
                 status = true;
             }
             return status;

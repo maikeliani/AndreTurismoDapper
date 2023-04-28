@@ -24,7 +24,7 @@ namespace Repositories
             var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                id = db.ExecuteScalar<int>(City.INSERT, new { @Name = hotel.Name, @IdAdress = hotel.Address.Id, @Dt_Register = hotel.Dt_Register, @Price = hotel.Price });
+                id = db.ExecuteScalar<int>(Hotel.INSERT, new { @Name = hotel.Name, @IdAdress = hotel.Address.Id, @Dt_Register = hotel.Dt_Register, @Price = hotel.Price });
             }
             return id;
         }

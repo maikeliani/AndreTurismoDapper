@@ -16,7 +16,7 @@ namespace Controllers
         {
             packageService = new PackageService();
         }
-        public bool Insert(Package package)
+        public int Insert(Package package)
         {
             return packageService.Insert(package);
         }
@@ -31,9 +31,9 @@ namespace Controllers
             return packageService.Delete(id);
         }
 
-        public bool Update(int IdHotel, int IdTicket, double Price, int IdClient, int id)
+        public bool Update(Package package)
         {
-            return packageService.Update(IdHotel, IdTicket, Price, IdClient, id);
+            return packageService.Update(package);
         }
 
 

@@ -10,10 +10,10 @@ namespace Repositories
 {
     public  interface IPackageRepository
     {
-        bool Insert(Package package);
+        int Insert(Package package);
 
         List<Package> GetAll();
         bool Delete(int id);
-        bool UpDate(int idHotel, int idTicket, double price, int idClient, int id);
+        bool UpDate(Package package);
     }
 }

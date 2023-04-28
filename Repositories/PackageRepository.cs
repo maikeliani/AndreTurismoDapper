@@ -18,36 +18,26 @@ namespace Repositories
         public PackageRepository()
         {
             Conn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
-
         }
         public List<Package> GetAll()
         {
+            List<Package> list = new List<Package>();
             using (var db = new SqlConnection(Conn))
             {
                 var packages = db.Query<Package>(Package.GETALL);
-                return (List<Package>)packages;
+                list = (List<Package>)packages;
             }
+            return list;
         }
 
-        public bool Insert(Package package)
+        public int Insert(Package package )
         {
-            var status = false;
+            var id = 0;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                SqlCommand commandInsert = new SqlCommand(Package.INSERT, db);
-
-               // commandInsert.Parameters.Add(new SqlParameter("@IdHotel", new HotelRepository().InsertHotel(package.Hotel).ToString()));                
-               // commandInsert.Parameters.Add(new SqlParameter("@IdTicket", new TicketRepository().InsertTicket(package.Ticket).ToString()));
-                commandInsert.Parameters.Add(new SqlParameter("@Dt_Register", package.Dt_Register));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", package.Price));
-               // commandInsert.Parameters.Add(new SqlParameter("@IdClient", new ClientRepository().InsertClient(package.Client).ToString()));
-                
-                commandInsert.ExecuteNonQuery();
-                
-                status = true;
+                id = db.ExecuteScalar<int>(Package.INSERT, new { @IdHotel = package.Hotel.Id, @IdTicket= package.Ticket.Id, @Dt_Register = package.Dt_Register, @Price = package.Price, @IdClient = package.Client.Id });
             }
-            return status;
+            return id;
         }
 
 
@@ -56,29 +46,20 @@ namespace Repositories
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                db.Execute(Package.DELETE + id);
+                db.Execute(Package.DELETE, new { @Id = id });
                 status = true;
             }
             return status;
         }
 
 
-        public bool UpDate(int idHotel, int idTicket, double price, int idClient, int id)
+       
+        public bool UpDate(Package package)
         {
             var status = false;
             using (var db = new SqlConnection(Conn))
             {
-                db.Open();
-                SqlCommand commandInsert = new SqlCommand(Package.UPDATE, db);
-
-                commandInsert.Parameters.Add(new SqlParameter("@IdHotel", idHotel));
-                commandInsert.Parameters.Add(new SqlParameter("@IdTicket",idTicket));
-                commandInsert.Parameters.Add(new SqlParameter("@Price", price));
-                commandInsert.Parameters.Add(new SqlParameter("@IdClient",idClient));
-                commandInsert.Parameters.Add(new SqlParameter("@Id", id));
-                commandInsert.ExecuteNonQuery();
-                
+                db.Execute(Package.UPDATE, new { @Id = package.Id, @IdHotel = package.Hotel.Id, @IdTicket = package.Ticket.Id, @Dt_Register = package.Dt_Register, @Price = package.Price, @IdClient = package.Client.Id });
                 status = true;
             }
             return status;

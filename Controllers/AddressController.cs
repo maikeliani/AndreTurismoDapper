@@ -20,7 +20,7 @@ namespace Controllers
         }
         public int Insert(Address address)
         {
-            var idCity = cityService.Insert(address.City); //  o metodo Insert devolve  um id(int)
+            var idCity = cityService.Insert(address.City); 
             address.City = new City()
             {
                 Id = idCity

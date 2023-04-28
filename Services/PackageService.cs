@@ -17,7 +17,7 @@ namespace Services
             packageRepository = new PackageRepository();
         }
 
-        public bool Insert(Package package)
+        public int Insert(Package package)
         {
             return packageRepository.Insert(package);
         }
@@ -32,11 +32,10 @@ namespace Services
             return packageRepository.Delete(id);
         }
 
-        public bool Update(int IdHotel, int IdTicket, double Price, int IdClient, int id)
+        public bool Update(Package package)
         {
-            return packageRepository.UpDate( IdHotel,  IdTicket,  Price,  IdClient,  id);
+            return packageRepository.UpDate(package);
         }
-
 
     }
 

@@ -61,7 +61,7 @@ namespace Repositories
         {
             var status = false;
             using (var db = new SqlConnection(Conn))            {
-                db.Open();
+                
                 db.Execute(City.UPDATE, new { @Id = city.Id, @Description = city.Description, @Dt_Register = city.Dt_Register });
 
                 status = true;

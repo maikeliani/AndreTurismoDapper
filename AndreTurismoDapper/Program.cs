@@ -1,4 +1,5 @@
-﻿using System.Net.WebSockets;
+﻿using System.Diagnostics;
+using System.Net.WebSockets;
 using System.Threading.Channels;
 using Controllers;
 using Microsoft.VisualBasic.FileIO;
@@ -73,7 +74,7 @@ internal class Program
 
         var address5 = new Address //APENAS PARA UPDATE, PASSANDO PARAMETRO ID COM VALOR
         {
-            
+
             Street = "29 de julho",
             Number = 165,
             NeighborHood = "vila xavier",
@@ -162,85 +163,160 @@ internal class Program
 
         var ticket5 = new Ticket() // teste update
         {
-            Id=26,
+            Id = 27,
             SourceAddress = address4,
 
             DestinationAddress = address4,
 
             Dt_Register = DateTime.Now,
-        
-                Client = client,
-               
-                 Price = 669
+
+            Client = client,
+
+            Price = 669
         };
 
-    var package = new Package()
-    {
-        Hotel = hotel,
-        Ticket = ticket,
-        Dt_Register = DateTime.Now,
-        Price = 170,
-        Client = client
-    };
-
-    var package2 = new Package()
-    {
-        Hotel = hotel2,
-        Ticket = ticket5,
-        Dt_Register = DateTime.Now,
-        Price = 245,
-        Client = client
-    };
-
-    var client5 = new Client() // para tester Update
-    {
-        Id = 44,
-        Name = "Celinha",
-        Telephone = "996123380",
-        Address = new()
+        var package = new Package()
         {
-            Id = 110,
-            Street = "avenida 7",
-            Number = 145,
-            NeighborHood = "centro",
-            ZipCode = "14800300",
-            Complement = "",
-            City = new City
+            Hotel = hotel,
+            Ticket = ticket,
+            Dt_Register = DateTime.Now,
+            Price = 170,
+            Client = client
+        };
+
+        var package2 = new Package()
+        {
+            Id = 6,
+            Hotel = new Hotel()
             {
-                Id = 2,
-                Description = "Araraquara",
+                Id = 4,
+                Name = " Trivado",
+                Address = address,
+                Dt_Register = DateTime.Now,
+                Price = 123
+            },
+            Ticket = ticket5,
+            Dt_Register = DateTime.Now,
+            Price = 245,
+            Client = client
+        };
+
+        var package3 = new Package()
+        {
+            Hotel = hotel3,
+            Ticket = new Ticket
+            {
+                Id = 4,
+                SourceAddress = new Address
+                {
+                    Street = "avenida dos buracos",
+                    Number = 100,
+                    NeighborHood = "santana",
+                    ZipCode = "14567890",
+                    Complement = "",
+                    City = data,
+                    Dt_Register = DateTime.Now
+                },
+                DestinationAddress = new Address
+                {
+
+                    Street = "rua dos barrancos",
+                    Number = 187,
+                    NeighborHood = "selmi-dei",
+                    ZipCode = "149990",
+                    Complement = "",
+                    City = data,
+                    Dt_Register = DateTime.Now
+
+                },
+                Client = client4,
+                Dt_Register = DateTime.Now,
+                Price = 50
+            },
+            Dt_Register = DateTime.Now,
+            Price = 175,
+            Client = client3
+        };
+
+
+
+
+
+
+        var client5 = new Client() // para tester Update
+        {
+            Id = 44,
+            Name = "Celinha",
+            Telephone = "996123380",
+            Address = new()
+            {
+                Id = 110,
+                Street = "avenida 7",
+                Number = 145,
+                NeighborHood = "centro",
+                ZipCode = "14800300",
+                Complement = "",
+                City = new City
+                {
+                    Id = 2,
+                    Description = "Araraquara",
+                    Dt_Register = DateTime.Now
+                },
                 Dt_Register = DateTime.Now
             },
-            Dt_Register = DateTime.Now
-        },
-        Dt_Register = DateTime.Now,
+            Dt_Register = DateTime.Now,
 
-    };
+        };
 
+
+
+
+
+
+        new PackageController().GetAll().ForEach(x=> Console.WriteLine(x));
+
+
+        //delete PAckage
+        //var deletedPackage = new PackageController().Delete(1) ? " deletado" : "erro";        
+       // Console.WriteLine(deletedPackage);
+
+
+        //update package
+        // var updatedPackage = new PackageController().Update(package2) ? " atualizado" : "erro";
+        // Console.WriteLine(updatedPackage);
+
+        //var InsertedPackage = new PackageController().Insert(package3);
+        // Console.WriteLine(InsertedPackage); // inserido no Id=6
+
+
+
+
+
+        //new TicketController().GetAll().ForEach(x => Console.WriteLine(x));
 
         //delete ticket
 
-        var deletedTicket = new TicketController().Delete(26) ? " deletado" : "erro";
-        Console.WriteLine(deletedTicket);
+        //var deletedTicket = new TicketController().Delete(26) ? " deletado" : "erro";
+        //Console.WriteLine(deletedTicket);
 
         //update Ticket
-        var updatedTicket = new TicketController().UpDate(ticket5) ? " alterado" : "erro";
-        Console.WriteLine(updatedTicket);
-    //inserindo ticket
+        // var updatedTicket = new TicketController().UpDate(ticket5) ? " alterado" : "erro";
+        // Console.WriteLine(updatedTicket);
+        //inserindo ticket
 
-  //  var insertedTicket = new TicketController().Insert(ticket5);
-    //Console.WriteLine("ticket inserido id: " + insertedTicket);
-       
+        //var insertedTicket = new TicketController().Insert(ticket5);
+        // Console.WriteLine("ticket inserido id: " + insertedTicket);
+
 
         //deletando hotel
         //var deleted = new HotelController().Delete(16) ? " deletado" : "erro";
-       // Console.WriteLine(deleted);
+        // Console.WriteLine(deleted);
 
 
         //update hotel
 
-       // var upHotel = new HotelController().Update(hotel3) ? " hotel alterado" : "erro ao alterar";
-       // Console.WriteLine(upHotel);
+        // var upHotel = new HotelController().Update(hotel3) ? " hotel alterado" : "erro ao alterar";
+        // Console.WriteLine(upHotel);
 
         // update address
         //  var updatedAddress = (new AddressController().UpDate(address4));
@@ -248,12 +324,12 @@ internal class Program
 
 
 
-        
+
         //inserindo endereco   // inseriu no id 126
 
-       // int idAddressInserted = new AddressController().Insert(address5);
-       // Console.WriteLine($"Inserido no id: {idAddressInserted}"); 
-        
+        // int idAddressInserted = new AddressController().Insert(address5);
+        // Console.WriteLine($"Inserido no id: {idAddressInserted}"); 
+
 
         //inserindo client
 
@@ -269,8 +345,8 @@ internal class Program
 
         //deletando client
 
-       // var deleted =new ClientController().Delete(1) ? " deletado" : " erro ao deletar";
-       // Console.WriteLine(deleted);
+        // var deleted =new ClientController().Delete(1) ? " deletado" : " erro ao deletar";
+        // Console.WriteLine(deleted);
 
 
     }
